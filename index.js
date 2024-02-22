@@ -134,7 +134,7 @@ const move = (mouse) => {
         );
 
         // Check if canvas is empty
-        if (getEmptyPixelsRatio() === 1) {
+        if (getEmptyPixelsRatio() > 0.96) {
             console.log("You have won!");
             isWon = true;
             isConfetti = true;
@@ -143,10 +143,15 @@ const move = (mouse) => {
     }
 };
 
-const press = () => {
+const pressCanvas = () => {
     isPress = true;
-    console.log("confetti", isConfetti);
+};
 
+const releaseCanvas = () => {
+    isPress = false;
+};
+
+const press = () => {
     if (isConfetti) {
         isConfetti = false;
         clearInterval(intervalId);
@@ -154,14 +159,13 @@ const press = () => {
     }
 };
 
-const release = () => {
-    isPress = false;
-};
-
-canvas.addEventListener("mousedown", press);
-canvas.addEventListener("mouseup", release);
-canvas.addEventListener("touchstart", press);
-canvas.addEventListener("touchend", release);
+canvas.addEventListener("mousedown", pressCanvas);
+canvas.addEventListener("mouseup", releaseCanvas);
+canvas.addEventListener("touchstart", pressCanvas);
+canvas.addEventListener("touchend", releaseCanvas);
 
 window.addEventListener("mousemove", move);
 window.addEventListener("touchmove", move);
+
+window.addEventListener("mousedown", press);
+window.addEventListener("touchstart", press);
