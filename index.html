@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="style.css" />
+        <title>Vymaž si památku</title>
+    </head>
+    <body>
+        <main>
+            <div id="delete-memorial" class="delete-memorial">
+                <div class="delete-memorial__title">Vymaž si památku!</div>
+
+                <div class="delete-memorial__container-btn">
+                    <button class="btn btn_disabled" disabled>
+                        Hotel Praha
+                    </button>
+                    <button class="btn btn_disabled" disabled>Transgas</button>
+                    <button class="btn btn_disabled" disabled>ÚTB</button>
+                    <button class="btn btn_clickable">Chemapol</button>
+                </div>
+
+                <div class="delete-memorial__field">
+                    <canvas
+                        id="canvas"
+                        class="delete-memorial__foreground"
+                    ></canvas>
+                </div>
+            </div>
+
+            <span id="excavator" class="delete-memorial__excavator">🚜</span>
+        </main>
+        <script src="index.js"></script>
+    </body>
+</html>
