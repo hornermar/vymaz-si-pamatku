@@ -135,7 +135,7 @@ const move = (mouse) => {
 
         // Check if canvas is empty
         console.log(getEmptyPixelsRatio());
-        if (getEmptyPixelsRatio() >= 0.9) {
+        if (getEmptyPixelsRatio() >= 0.99) {
             console.log("You have won!");
             isWon = true;
             isConfetti = true;
