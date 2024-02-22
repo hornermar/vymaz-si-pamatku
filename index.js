@@ -7,7 +7,7 @@ const isMobile = window.matchMedia(
     "only screen and (max-width: 760px)"
 ).matches;
 
-const src = "./chemapol_final.jpg";
+const src = "./chemapol.png";
 const img = new Image();
 img.src = src;
 
@@ -96,15 +96,17 @@ img.onload = function () {
 
 // Calculate transparency
 const maxPixels = size * size;
+
 const getEmptyPixelsRatio = () => {
     const imageData = ctx.getImageData(0, 0, size, size).data;
-
     const alphaValues = imageData.filter(
         (value) => value === 0 || value === 255
     );
 
-    counter.innerHTML = alphaValues.length / 4 / maxPixels;
-    return alphaValues.length / 4 / maxPixels;
+    const result = alphaValues.length / 4 / maxPixels;
+
+    counter.innerHTML = result * 100 + " %";
+    return result;
 };
 
 const move = (mouse) => {
