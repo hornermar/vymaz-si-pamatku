@@ -16,6 +16,8 @@ const excavator = document.getElementById("excavator");
 const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
 
+const counter = document.getElementById("counter");
+
 const clearRectSize = isMobile ? 20 : 40;
 
 function createConfetti() {
@@ -101,6 +103,7 @@ const getEmptyPixelsRatio = () => {
         (value) => value === 0 || value === 255
     );
 
+    counter.innerHTML = alphaValues.length / 4 / maxPixels;
     return alphaValues.length / 4 / maxPixels;
 };
 
