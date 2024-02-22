@@ -123,8 +123,6 @@ const move = (mouse) => {
         // Move excavator
         excavator.style = `--top: ${clientY}px; --left: ${clientX}px;`;
 
-        if (isWon) return;
-
         // Clear
         ctx.clearRect(
             canvasX - clearRectSize / 2,
@@ -133,8 +131,11 @@ const move = (mouse) => {
             clearRectSize
         );
 
+        if (isWon) return;
+
         // Check if canvas is empty
-        if (getEmptyPixelsRatio() > 0.96) {
+        console.log(getEmptyPixelsRatio());
+        if (getEmptyPixelsRatio() >= 0.9) {
             console.log("You have won!");
             isWon = true;
             isConfetti = true;
