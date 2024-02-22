@@ -1,0 +1,1 @@
+# vymaz-si-pamatku
