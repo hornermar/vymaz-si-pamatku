@@ -109,6 +109,33 @@ const getEmptyPixelsRatio = () => {
     return result;
 };
 
+const displayNotDestroyed = () => {
+    const imageData = ctx.getImageData(0, 0, size, size).data;
+    // assuming imageData is an array of pixel data
+    for (let i = 0; i < imageData.length; i += 4) {
+        // if the color of a pixel is not transparent or white, set it to the red color
+        if (imageData[i] !== 0 && imageData[i] !== 255) {
+            imageData[i] = 255; // Red
+            imageData[i + 1] = 0; // Green
+            imageData[i + 2] = 0; // Blue
+            imageData[i + 3] = 255; // Alpha
+        }
+    }
+    // Put the modified image data back into the canvas
+    ctx.putImageData(
+        new ImageData(
+            new Uint8ClampedArray(imageData),
+            canvas.width,
+            canvas.height
+        ),
+        0,
+        0
+    );
+};
+
+const notDestroyedBtn = document.getElementById("not-destroyed");
+notDestroyedBtn.addEventListener("click", displayNotDestroyed);
+
 const move = (mouse) => {
     if (!isPress) return;
 
@@ -135,7 +162,7 @@ const move = (mouse) => {
 
         // Check if canvas is empty
         console.log(getEmptyPixelsRatio());
-        if (getEmptyPixelsRatio() >= 0.99) {
+        if (getEmptyPixelsRatio() >= 0.996) {
             console.log("You have won!");
             isWon = true;
             isConfetti = true;
