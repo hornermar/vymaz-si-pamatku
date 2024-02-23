@@ -99,11 +99,20 @@ const maxPixels = size * size;
 
 const getEmptyPixelsRatio = () => {
     const imageData = ctx.getImageData(0, 0, size, size).data;
-    const alphaValues = imageData.filter(
-        (value) => value === 0 || value === 255
-    );
 
-    const result = alphaValues.length / 4 / maxPixels;
+    let alphaValues = [];
+    for (let i = 0; i < imageData.length; i += 4) {
+        if (
+            (imageData[i] === 255 &&
+                imageData[i + 1] === 255 &&
+                imageData[i + 2] === 255) || // white
+            imageData[i + 3] === 0 // transparent
+        ) {
+            alphaValues.push(i);
+        }
+    }
+
+    const result = alphaValues.length / maxPixels;
 
     counter.innerHTML = result * 100 + " %";
     return result;
@@ -114,7 +123,16 @@ const displayNotDestroyed = () => {
     // assuming imageData is an array of pixel data
     for (let i = 0; i < imageData.length; i += 4) {
         // if the color of a pixel is not transparent or white, set it to the red color
-        if (imageData[i] !== 0 && imageData[i] !== 255) {
+        if (
+            !(
+                (
+                    (imageData[i] === 255 &&
+                        imageData[i + 1] === 255 &&
+                        imageData[i + 2] === 255) || // white
+                    imageData[i + 3] === 0
+                ) // transparent
+            )
+        ) {
             imageData[i] = 255; // Red
             imageData[i + 1] = 0; // Green
             imageData[i + 2] = 0; // Blue
@@ -161,8 +179,8 @@ const move = (mouse) => {
         if (isWon) return;
 
         // Check if canvas is empty
-        console.log(getEmptyPixelsRatio());
-        if (getEmptyPixelsRatio() >= 0.996) {
+
+        if (getEmptyPixelsRatio() === 1) {
             console.log("You have won!");
             isWon = true;
             isConfetti = true;
