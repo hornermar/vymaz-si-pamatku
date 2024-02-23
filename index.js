@@ -2,6 +2,7 @@ let isPress = false;
 let isWon = false;
 let isConfetti = false;
 let intervalId;
+let wasPressed = false;
 
 const isMobile = window.matchMedia(
     "only screen and (max-width: 760px)"
@@ -16,7 +17,7 @@ const excavator = document.getElementById("excavator");
 const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
 
-const counter = document.getElementById("counter");
+// const counter = document.getElementById("counter");
 
 const clearRectSize = isMobile ? 20 : 40;
 
@@ -114,45 +115,45 @@ const getEmptyPixelsRatio = () => {
 
     const result = alphaValues.length / maxPixels;
 
-    counter.innerHTML = result * 100 + " %";
+    // counter.innerHTML = result * 100 + " %";
     return result;
 };
 
-const displayNotDestroyed = () => {
-    const imageData = ctx.getImageData(0, 0, size, size).data;
-    // assuming imageData is an array of pixel data
-    for (let i = 0; i < imageData.length; i += 4) {
-        // if the color of a pixel is not transparent or white, set it to the red color
-        if (
-            !(
-                (
-                    (imageData[i] === 255 &&
-                        imageData[i + 1] === 255 &&
-                        imageData[i + 2] === 255) || // white
-                    imageData[i + 3] === 0
-                ) // transparent
-            )
-        ) {
-            imageData[i] = 255; // Red
-            imageData[i + 1] = 0; // Green
-            imageData[i + 2] = 0; // Blue
-            imageData[i + 3] = 255; // Alpha
-        }
-    }
-    // Put the modified image data back into the canvas
-    ctx.putImageData(
-        new ImageData(
-            new Uint8ClampedArray(imageData),
-            canvas.width,
-            canvas.height
-        ),
-        0,
-        0
-    );
-};
+// const displayNotDestroyed = () => {
+//     const imageData = ctx.getImageData(0, 0, size, size).data;
+//     // assuming imageData is an array of pixel data
+//     for (let i = 0; i < imageData.length; i += 4) {
+//         // if the color of a pixel is not transparent or white, set it to the red color
+//         if (
+//             !(
+//                 (
+//                     (imageData[i] === 255 &&
+//                         imageData[i + 1] === 255 &&
+//                         imageData[i + 2] === 255) || // white
+//                     imageData[i + 3] === 0
+//                 ) // transparent
+//             )
+//         ) {
+//             imageData[i] = 255; // Red
+//             imageData[i + 1] = 0; // Green
+//             imageData[i + 2] = 0; // Blue
+//             imageData[i + 3] = 255; // Alpha
+//         }
+//     }
+//     // Put the modified image data back into the canvas
+//     ctx.putImageData(
+//         new ImageData(
+//             new Uint8ClampedArray(imageData),
+//             canvas.width,
+//             canvas.height
+//         ),
+//         0,
+//         0
+//     );
+// };
 
-const notDestroyedBtn = document.getElementById("not-destroyed");
-notDestroyedBtn.addEventListener("click", displayNotDestroyed);
+// const notDestroyedBtn = document.getElementById("not-destroyed");
+// notDestroyedBtn.addEventListener("click", displayNotDestroyed);
 
 const move = (mouse) => {
     if (!isPress) return;
@@ -180,8 +181,7 @@ const move = (mouse) => {
 
         // Check if canvas is empty
 
-        if (getEmptyPixelsRatio() === 1) {
-            console.log("You have won!");
+        if (getEmptyPixelsRatio() >= 0.996) {
             isWon = true;
             isConfetti = true;
             createConfetti();
@@ -191,6 +191,14 @@ const move = (mouse) => {
 
 const pressCanvas = () => {
     isPress = true;
+
+    if (!wasPressed) {
+        wasPressed = true;
+
+        const pressDescriptionElement =
+            document.getElementById("press-descriotion");
+        pressDescriptionElement.style.display = "none";
+    }
 };
 
 const releaseCanvas = () => {
