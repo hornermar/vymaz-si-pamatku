@@ -24,7 +24,7 @@ main {
     width: 100%;
     padding: 2rem 0rem;
     overflow: hidden;
-    gap: 0.8rem;
+    gap: 0.9rem;
 }
 
 .delete-memorial__title {
@@ -37,13 +37,13 @@ main {
 h1 {
     width: 100%;
     color: black;
-    font-size: 5rem;
+    font-size: 3.5em;
     text-align: center;
     margin: 0;
 }
 
 .delete-memorial__field {
-    padding: 0 1rem;
+    /* padding: 0 1rem; */
     border-style: dashed;
     border-color: black;
     border-width: 0.3rem;
@@ -52,7 +52,7 @@ h1 {
 
 p {
     margin: 0.2rem 0;
-    /* font-size: 1.2rem; */
+    font-size: 1.2rem;
 }
 
 .delete-memorial__excavator {
@@ -98,7 +98,7 @@ p {
 
 @media only screen and (max-width: 600px) {
     .btn {
-        height: 2.5rem;
+        height: 2rem;
         min-width: 120px;
     }
 }
