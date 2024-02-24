@@ -1,18 +1,34 @@
+import { createConfetti, removeConfetti } from "./confetti.js";
+
 let isPress = false;
 let isWon = false;
 let isConfetti = false;
 let intervalId;
 let wasPressed = false;
 
+const memorials = [
+    { src: "./chemapol.png", value: "chemapol" },
+    { src: "./zeleznicni-most.png", value: "zeleznicniMost" },
+];
+
 const isMobile = window.matchMedia(
     "only screen and (max-width: 760px)"
 ).matches;
 
-const src = "./chemapol.png";
+let src = memorials[0].src;
 const img = new Image();
 img.src = src;
 
-const scratchWin = document.getElementById("delete-memorial");
+const changeMemorialButtons = document.querySelectorAll("#change-btn");
+const changeMemorial = (e) => {
+    const src = memorials.find((m) => m.value === e.target.value).src;
+    img.src = src;
+    img.onload();
+};
+changeMemorialButtons.forEach((btn) => {
+    btn.addEventListener("click", changeMemorial);
+});
+
 const excavator = document.getElementById("excavator");
 const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
@@ -21,85 +37,33 @@ const ctx = canvas.getContext("2d");
 
 const clearRectSize = isMobile ? 20 : 40;
 
-function createConfetti() {
-    const confettiCount = 200;
-    const confettiColors = [
-        "#f5df4d",
-        "#d2c800",
-        "#c0c4c8",
-        "#939597",
-        "black",
-    ];
-
-    for (let i = 0; i < confettiCount; i++) {
-        let confetti = document.createElement("div");
-        confetti.classList.add("confetti");
-        confetti.style.backgroundColor =
-            confettiColors[Math.floor(Math.random() * confettiColors.length)];
-        confetti.style.position = "fixed";
-        confetti.style.height = "10px";
-        confetti.style.width = "10px";
-        confetti.style.top = Math.random() * window.innerHeight + "px";
-        confetti.style.left = Math.random() * window.innerWidth + "px";
-        confetti.style.zIndex = 9999;
-        document.body.appendChild(confetti);
-
-        animateConfetti(confetti);
-    }
-}
-
-const animateConfetti = (confetti) => {
-    let initialX = Math.random() * 10 - 5;
-    let initialY = Math.random() * 10 - 5;
-    let rotation = Math.random() * 360;
-
-    let transform = `translate(${initialX}px, ${initialY}px) rotate(${rotation}deg)`;
-    confetti.style.transform = transform;
-
-    setInterval(() => {
-        confetti.style.top = confetti.offsetTop + 8 + "px";
-        confetti.style.transform = `translate(${initialX}px, ${initialY}px) rotate(${rotation}deg)`;
-
-        if (confetti.offsetTop > window.innerHeight) {
-            confetti.style.top = 0;
-        }
-        if (confetti.offsetLeft > window.innerWidth) {
-            confetti.style.left = 0;
-        }
-    }, 1000 / 60);
-};
-
-const removeConfetti = () => {
-    const confetti = document.querySelectorAll(".confetti");
-    confetti.forEach((c) => {
-        document.body.removeChild(c);
-    });
-};
-
 // calculate the size of the canvas depending of the size of the window
 const windowWidth = window.innerWidth;
 const windowHeight = window.innerHeight;
-const calculatedSize = Math.min(windowWidth, windowHeight) * 0.6;
+const calculatedSize = Math.min(windowWidth, windowHeight) * 0.9;
 const size = calculatedSize < 500 ? calculatedSize : 500;
 
-canvas.width = size;
-canvas.height = size;
+const width = size;
+const height = (3 / 4) * size;
+
+canvas.width = width;
+canvas.height = height;
 
 img.onload = function () {
-    ctx.drawImage(img, 0, 0, size, size);
+    ctx.drawImage(img, 0, 0, width, height);
 
     // move excavator to the center of the canvas
     const canvasPosition = canvas.getBoundingClientRect();
-    const canvasX = canvasPosition.left + size - 5;
-    const canvasY = canvasPosition.top + size - 20;
+    const canvasX = canvasPosition.left + width - 5;
+    const canvasY = canvasPosition.top + height - 20;
     excavator.style = `--top: ${canvasY}px; --left: ${canvasX}px;`;
 };
 
 // Calculate transparency
-const maxPixels = size * size;
+const maxPixels = width * height;
 
 const getEmptyPixelsRatio = () => {
-    const imageData = ctx.getImageData(0, 0, size, size).data;
+    const imageData = ctx.getImageData(0, 0, width, height).data;
 
     let alphaValues = [];
     for (let i = 0; i < imageData.length; i += 4) {
@@ -165,7 +129,7 @@ const move = (mouse) => {
     const canvasX = clientX - canvasPosition.left;
     const canvasY = clientY - canvasPosition.top;
 
-    if (canvasX > 0 && canvasX < size && canvasY > 0 && canvasY < size) {
+    if (canvasX > 0 && canvasX < width && canvasY > 0 && canvasY < height) {
         // Move excavator
         excavator.style = `--top: ${clientY}px; --left: ${clientX}px;`;
 
