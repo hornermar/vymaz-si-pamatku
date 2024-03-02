@@ -22,9 +22,9 @@ main {
     align-items: center;
     position: relative;
     width: 100%;
-    padding: 2rem 0rem;
+    padding: 1rem 0rem;
     overflow: hidden;
-    gap: 0.9rem;
+    gap: 0.7rem;
 }
 
 .delete-memorial__title {
@@ -37,7 +37,7 @@ main {
 h1 {
     width: 100%;
     color: black;
-    font-size: 3.5em;
+    font-size: 5em;
     text-align: center;
     margin: 0;
 }
@@ -52,10 +52,11 @@ h1 {
 
 p {
     margin: 0.2rem 0;
-    font-size: 1.2rem;
+    font-size: 1.7rem;
+    text-align: center;
 }
 
-.delete-memorial__excavator {
+.delete-memorial__bulldozer {
     position: absolute;
     z-index: 2;
     top: calc(var(--top) - 1rem);
@@ -64,6 +65,13 @@ p {
     height: 6rem;
     pointer-events: none;
     font-size: 1.5rem;
+}
+
+.delete-memorial__bulldozer img {
+    width: 3.5rem;
+    height: 2rem;
+    /* zrcadlově otočit */
+    transform: scaleX(-1);
 }
 
 /* Buttons */
