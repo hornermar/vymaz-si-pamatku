@@ -1,59 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="stylesheet" href="style.css" />
-        <title>Vymaž si památku</title>
-    </head>
-    <body>
-        <main>
-            <div id="delete-memorial" class="delete-memorial">
-                <div class="delete-memorial__title">
-                    <h1>Vymaž si památku!</h1>
-                    <!-- <p>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Vymaž si památku</title>
+  </head>
+  <body>
+    <main>
+      <div id="delete-memorial" class="delete-memorial">
+        <div class="delete-memorial__title">
+          <h1>Vymaž si památku!</h1>
+          <!-- <p>
                         Odstraňte si památku virtuálně, ať už nemusíte v reálu.
                     </p> -->
-                </div>
+        </div>
 
-                <div class="delete-memorial__container-btn">
-                    <button class="btn btn_disabled" disabled>
-                        Hotel Praha
-                    </button>
-                    <button class="btn btn_disabled" disabled>Transgas</button>
-                    <button class="btn btn_disabled" disabled>ÚTB</button>
-                    <button
-                        value="chemapol"
-                        id="change-btn"
-                        class="btn btn_clickable"
-                    >
-                        Chemapol
-                    </button>
-                    <button
-                        value="zeleznicniMost"
-                        id="change-btn"
-                        class="btn btn_clickable"
-                    >
-                        Železniční most
-                    </button>
-                </div>
+        <div class="delete-memorial__container-btn">
+          <button class="btn btn_disabled" disabled>OD Ještěd</button>
+          <button class="btn btn_disabled" disabled>Hotel Praha</button>
+          <button class="btn btn_disabled" disabled>Transgas</button>
+          <button class="btn btn_disabled" disabled>ÚTB</button>
+          <button value="chemapol" id="change-btn" class="btn btn_clickable">
+            Chemapol
+          </button>
+          <button
+            value="zeleznicniMost"
+            id="change-btn"
+            class="btn btn_clickable"
+          >
+            Železniční most
+          </button>
+        </div>
 
-                <div>
-                    <div class="delete-memorial__field">
-                        <canvas
-                            id="canvas"
-                            class="delete-memorial__foreground"
-                        ></canvas>
-                    </div>
-                </div>
-                <p id="press-descriotion">Stiskem v rámečku začněte mazat.</p>
-            </div>
+        <div>
+          <div class="delete-memorial__field">
+            <canvas id="canvas" class="delete-memorial__foreground"></canvas>
+          </div>
+        </div>
+        <p id="press-descriotion">Stiskem v rámečku začněte mazat.</p>
+      </div>
 
-            <span id="bulldozer" class="delete-memorial__bulldozer">
-                <img src="Bulldozer.svg" alt="bulldozer" />
-            </span>
-        </main>
-        <script src="index.js" type="module"></script>
-        <script scr="confetti.js" type="module"></script>
-    </body>
+      <span id="bulldozer" class="delete-memorial__bulldozer">
+        <img src="Bulldozer.svg" alt="bulldozer" />
+      </span>
+    </main>
+    <script src="index.js" type="module"></script>
+    <script scr="confetti.js" type="module"></script>
+  </body>
 </html>
