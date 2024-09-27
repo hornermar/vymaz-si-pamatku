@@ -7,12 +7,12 @@ let intervalId;
 let wasPressed = false;
 
 const memorials = [
-    { src: "./chemapol.png", value: "chemapol" },
-    { src: "./zeleznicni-most.png", value: "zeleznicniMost" },
+  { src: "./zeleznicni-most.png", value: "zeleznicniMost" },
+  { src: "./chemapol.png", value: "chemapol" },
 ];
 
 const isMobile = window.matchMedia(
-    "only screen and (max-width: 760px)"
+  "only screen and (max-width: 760px)"
 ).matches;
 
 let src = memorials[1].src;
@@ -21,18 +21,18 @@ img.src = src;
 
 const changeMemorialButtons = document.querySelectorAll("#change-btn");
 const changeMemorial = (e) => {
-    const src = memorials.find((m) => m.value === e.target.value).src;
-    img.src = src;
-    img.onload();
-    isWon = false;
+  const src = memorials.find((m) => m.value === e.target.value).src;
+  img.src = src;
+  img.onload();
+  isWon = false;
 };
 changeMemorialButtons.forEach((btn) => {
-    btn.addEventListener("click", changeMemorial);
+  btn.addEventListener("click", changeMemorial);
 });
 
 const bulldozer = document.getElementById("bulldozer");
 const canvas = document.getElementById("canvas");
-const ctx = canvas.getContext("2d");
+const ctx = canvas.getContext("2d", { willReadFrequently: true });
 
 const clearRectSize = isMobile ? 20 : 40;
 
@@ -49,93 +49,93 @@ canvas.width = width;
 canvas.height = height;
 
 img.onload = function () {
-    ctx.drawImage(img, 0, 0, width, height);
+  ctx.drawImage(img, 0, 0, width, height);
 
-    // move bulldozer to the center of the canvas
-    const canvasPosition = canvas.getBoundingClientRect();
-    const canvasX = canvasPosition.left + width - 45;
-    const canvasY = canvasPosition.top + height - 20;
-    bulldozer.style = `--top: ${canvasY}px; --left: ${canvasX}px;`;
+  // move bulldozer to the center of the canvas
+  const canvasPosition = canvas.getBoundingClientRect();
+  const canvasX = canvasPosition.left + width - 45;
+  const canvasY = canvasPosition.top + height - 20;
+  bulldozer.style = `--top: ${canvasY}px; --left: ${canvasX}px;`;
 };
 
 // Calculate transparency
 const maxPixels = width * height;
 
 const getEmptyPixelsRatio = () => {
-    const imageData = ctx.getImageData(0, 0, width, height).data;
+  const imageData = ctx.getImageData(0, 0, width, height).data;
 
-    let alphaValues = [];
-    for (let i = 0; i < imageData.length; i += 4) {
-        if (
-            (imageData[i] === 255 &&
-                imageData[i + 1] === 255 &&
-                imageData[i + 2] === 255) || // white
-            imageData[i + 3] === 0 // transparent
-        ) {
-            alphaValues.push(i);
-        }
+  let alphaValues = [];
+  for (let i = 0; i < imageData.length; i += 4) {
+    if (
+      (imageData[i] === 255 &&
+        imageData[i + 1] === 255 &&
+        imageData[i + 2] === 255) || // white
+      imageData[i + 3] === 0 // transparent
+    ) {
+      alphaValues.push(i);
     }
+  }
 
-    const result = alphaValues.length / maxPixels;
+  const result = alphaValues.length / maxPixels;
 
-    return result;
+  return result;
 };
 
 const move = (mouse) => {
-    if (!isPress) return;
+  if (!isPress) return;
 
-    const clientX = mouse.clientX ? mouse.clientX : mouse.touches[0].clientX;
-    const clientY = mouse.clientY ? mouse.clientY : mouse.touches[0].clientY;
+  const clientX = mouse.clientX ? mouse.clientX : mouse.touches[0].clientX;
+  const clientY = mouse.clientY ? mouse.clientY : mouse.touches[0].clientY;
 
-    const canvasPosition = canvas.getBoundingClientRect();
-    const canvasX = clientX - canvasPosition.left;
-    const canvasY = clientY - canvasPosition.top;
+  const canvasPosition = canvas.getBoundingClientRect();
+  const canvasX = clientX - canvasPosition.left;
+  const canvasY = clientY - canvasPosition.top;
 
-    if (canvasX > 0 && canvasX < width && canvasY > 0 && canvasY < height) {
-        // Move bulldozer
-        bulldozer.style = `--top: ${clientY}px; --left: ${clientX}px;`;
+  if (canvasX > 0 && canvasX < width && canvasY > 0 && canvasY < height) {
+    // Move bulldozer
+    bulldozer.style = `--top: ${clientY}px; --left: ${clientX}px;`;
 
-        // Clear
-        ctx.clearRect(
-            canvasX - clearRectSize / 2,
-            canvasY - clearRectSize / 2,
-            clearRectSize,
-            clearRectSize
-        );
+    // Clear
+    ctx.clearRect(
+      canvasX - clearRectSize / 2,
+      canvasY - clearRectSize / 2,
+      clearRectSize,
+      clearRectSize
+    );
 
-        if (isWon) return;
+    if (isWon) return;
 
-        // Check if canvas is empty
-        if (getEmptyPixelsRatio() >= 0.996) {
-            isWon = true;
-            isConfetti = true;
-            createConfetti();
-        }
+    // Check if canvas is empty
+    if (getEmptyPixelsRatio() >= 0.999) {
+      isWon = true;
+      isConfetti = true;
+      createConfetti();
     }
+  }
 };
 
 const pressCanvas = () => {
-    isPress = true;
+  isPress = true;
 
-    if (!wasPressed) {
-        wasPressed = true;
+  if (!wasPressed) {
+    wasPressed = true;
 
-        const pressDescriptionElement =
-            document.getElementById("press-descriotion");
-        pressDescriptionElement.style.display = "none";
-    }
+    const pressDescriptionElement =
+      document.getElementById("press-descriotion");
+    pressDescriptionElement.style.display = "none";
+  }
 };
 
 const releaseCanvas = () => {
-    isPress = false;
+  isPress = false;
 };
 
 const press = () => {
-    if (isConfetti) {
-        isConfetti = false;
-        clearInterval(intervalId);
-        removeConfetti();
-    }
+  if (isConfetti) {
+    isConfetti = false;
+    clearInterval(intervalId);
+    removeConfetti();
+  }
 };
 
 canvas.addEventListener("mousedown", pressCanvas);
