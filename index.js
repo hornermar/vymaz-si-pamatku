@@ -106,7 +106,7 @@ const move = (mouse) => {
     if (isWon) return;
 
     // Check if canvas is empty
-    if (getEmptyPixelsRatio() >= 0.999) {
+    if (getEmptyPixelsRatio() >= 0.996) {
       isWon = true;
       isConfetti = true;
       createConfetti();
