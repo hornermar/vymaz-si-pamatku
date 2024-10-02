@@ -19,8 +19,11 @@ let src = memorials[1].src;
 const img = new Image();
 img.src = src;
 
+const endDescriptionEl = document.getElementById("end-descriotion");
+
 const changeMemorialButtons = document.querySelectorAll("#change-btn");
 const changeMemorial = (e) => {
+  endDescriptionEl.style.display = "none";
   const src = memorials.find((m) => m.value === e.target.value).src;
   img.src = src;
   img.onload();
@@ -110,6 +113,7 @@ const move = (mouse) => {
       isWon = true;
       isConfetti = true;
       createConfetti();
+      endDescriptionEl.style.display = "block";
     }
   }
 };
@@ -120,9 +124,8 @@ const pressCanvas = () => {
   if (!wasPressed) {
     wasPressed = true;
 
-    const pressDescriptionElement =
-      document.getElementById("press-descriotion");
-    pressDescriptionElement.style.display = "none";
+    const pressDescriptionEl = document.getElementById("press-descriotion");
+    pressDescriptionEl.style.display = "none";
   }
 };
 

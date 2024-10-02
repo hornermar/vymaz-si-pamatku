@@ -1,155 +1,163 @@
 @import url("https://fonts.googleapis.com/css2?family=Micro+5&display=swap");
 
 body {
-    position: fixed;
-    height: 100vh;
-    width: 100vw;
-    margin: 0;
-    font-family: "Micro 5", sans-serif;
-    font-weight: 400;
-    font-style: normal;
-    overflow: hidden;
+  position: fixed;
+  height: 100vh;
+  width: 100vw;
+  margin: 0;
+  font-family: "Micro 5", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  overflow: hidden;
 }
 
 main {
-    width: 100%;
-    display: inline-flex;
+  width: 100%;
+  display: inline-flex;
 }
 
 .delete-memorial {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    position: relative;
-    width: 100%;
-    padding: 1rem 0rem;
-    overflow: hidden;
-    gap: 0.7rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  width: 100%;
+  padding: 1rem 0rem;
+  overflow: hidden;
+  gap: 0.7rem;
 }
 
 .delete-memorial__title {
-    padding: 0 1rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  padding: 0 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 h1 {
-    width: 100%;
-    color: black;
-    font-size: 5em;
-    text-align: center;
-    margin: 0;
+  width: 100%;
+  color: black;
+  font-size: 5em;
+  text-align: center;
+  margin: 0;
 }
 
 .delete-memorial__field {
-    /* padding: 0 1rem; */
-    border-style: dashed;
-    border-color: black;
-    border-width: 0.3rem;
-    max-width: 500px;
+  border-style: dashed;
+  border-color: black;
+  border-width: 0.3rem;
+  max-width: 500px;
+  position: relative;
 }
 
 p {
-    margin: 0.2rem 0;
-    font-size: 1.7rem;
-    text-align: center;
+  margin: 0.2rem 0;
+  font-size: 1.7rem;
+  text-align: center;
 }
 
 .delete-memorial__bulldozer {
-    position: absolute;
-    z-index: 2;
-    top: calc(var(--top) - 1rem);
-    left: calc(var(--left) - 1rem);
-    width: 6rem;
-    height: 6rem;
-    pointer-events: none;
-    font-size: 1.5rem;
+  position: absolute;
+  z-index: 2;
+  top: calc(var(--top) - 1rem);
+  left: calc(var(--left) - 1rem);
+  width: 6rem;
+  height: 6rem;
+  pointer-events: none;
+  font-size: 1.5rem;
 }
 
 .delete-memorial__bulldozer img {
-    width: 3.5rem;
-    height: 2rem;
-    /* zrcadlově otočit */
-    transform: scaleX(-1);
+  width: 3.5rem;
+  height: 2rem;
+  /* zrcadlově otočit */
+  transform: scaleX(-1);
 }
 
 /* Buttons */
 
 .delete-memorial__container-btn {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    width: 80%;
-    justify-content: center;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 80%;
+  justify-content: center;
 }
 
 @media only screen and (max-width: 600px) {
-    .delete-memorial__container-btn {
-        width: 100%;
-        justify-content: center;
-    }
+  .delete-memorial__container-btn {
+    width: 100%;
+    justify-content: center;
+  }
 }
 
 .btn {
-    font-family: "Micro 5", sans-serif;
-    font-weight: 400;
-    font-size: 2rem;
-    min-width: 200px;
-    height: 70px;
-    border: 0px;
-    position: relative;
-    background: #f5df4d;
-    white-space: nowrap;
-    margin: 0.5rem;
+  font-family: "Micro 5", sans-serif;
+  font-weight: 400;
+  font-size: 2rem;
+  min-width: 200px;
+  height: 70px;
+  border: 0px;
+  position: relative;
+  background: #f5df4d;
+  white-space: nowrap;
+  margin: 0.5rem;
 }
 
 @media only screen and (max-width: 600px) {
-    .btn {
-        height: 2rem;
-        min-width: 120px;
-    }
+  .btn {
+    height: 2rem;
+    min-width: 120px;
+  }
 }
 
 .btn_disabled {
-    background: #c0c4c8;
+  background: #c0c4c8;
 }
 
 .btn_clickable:hover {
-    cursor: pointer;
-    background-color: #d2c800;
+  cursor: pointer;
+  background-color: #d2c800;
 }
 
 .btn_clickable:active {
-    top: 5px;
+  top: 5px;
 }
 
 .btn::after {
-    content: "";
-    background: black;
-    position: absolute;
-    left: -2.5%;
-    top: 0;
-    width: 105%;
-    height: 100%;
-    z-index: -1;
+  content: "";
+  background: black;
+  position: absolute;
+  left: -2.5%;
+  top: 0;
+  width: 105%;
+  height: 100%;
+  z-index: -1;
 }
 
 .btn_disabled::after {
-    background: #939597;
+  background: #939597;
 }
 
 .btn::before {
-    content: "";
-    background: black;
-    position: absolute;
-    left: 0;
-    top: -5%;
-    width: 100%;
-    height: 113%;
-    z-index: -1;
+  content: "";
+  background: black;
+  position: absolute;
+  left: 0;
+  top: -5%;
+  width: 100%;
+  height: 113%;
+  z-index: -1;
 }
 
 .btn_disabled::before {
-    background: #939597;
+  background: #939597;
+}
+
+#end-descriotion {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: none;
 }
