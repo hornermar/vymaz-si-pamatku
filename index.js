@@ -67,13 +67,13 @@ function move(mouse) {
       clearRectSize
     );
 
-    if (isWon) return;
-
     const emptyPixelRation = getEmptyPixelsRatio();
     progressBarPercentage.textContent = `${(emptyPixelRation * 100).toFixed(
       2
     )}%`;
     updateProgressBar(emptyPixelRation * 100);
+
+    if (isWon) return;
 
     if (emptyPixelRation >= 0.995) {
       isWon = true;
@@ -123,8 +123,8 @@ function pressProgressBar() {
 
 // Initialization
 const memorials = [
-  { src: "./zeleznicni-most.png", value: "zeleznicniMost" },
-  { src: "./chemapol.png", value: "chemapol" },
+  { src: "zeleznicni-most.png", value: "zeleznicniMost" },
+  { src: "chemapol.png", value: "chemapol" },
 ];
 
 const isMobile = window.matchMedia(
