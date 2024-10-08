@@ -80,7 +80,7 @@ function move(mouse) {
       isConfetti = true;
       createConfetti();
       endDescriptionEl.style.display = "block";
-      updateProgressBar(100);
+      // updateProgressBar(100);
     }
   }
 }

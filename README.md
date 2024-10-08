@@ -4,4 +4,4 @@
 
 Užij si bourání památek. Aspoň na chvilku!
 
-## [Play Online](https://www.marketahajek.cz/vymaz-si-pamatku)
+## [Online tady!](https://www.marketahajek.cz/vymaz-si-pamatku)
