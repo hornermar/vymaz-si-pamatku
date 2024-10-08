@@ -75,9 +75,9 @@ function move(mouse) {
     progressBarPercentage.textContent = `${(emptyPixelRation * 100).toFixed(
       2
     )}%`;
-    updateProgressBar(emptyPixelRation * 100);
 
     if (isWon) return;
+    updateProgressBar(emptyPixelRation * 100);
 
     if (
       (isIOS && emptyPixelRation >= 0.9923) ||
@@ -87,6 +87,7 @@ function move(mouse) {
       isConfetti = true;
       createConfetti();
       updateProgressBar(100);
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
       endDescriptionEl.style.display = "block";
     }
   }
