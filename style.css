@@ -194,6 +194,7 @@ p {
   width: 100%;
   height: 5px;
   z-index: 1000;
+  background-color: white;
 }
 
 #progress-bar {
@@ -222,7 +223,7 @@ p {
   top: -10px; /* Start slightly above the top border */
   width: 10px;
   height: 10px;
-  z-index: 9999;
+  z-index: 999;
   animation: confetti-fall linear infinite;
   animation-play-state: paused; /* Start paused */
 }

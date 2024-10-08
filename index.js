@@ -35,7 +35,7 @@ function getEmptyPixelsRatio() {
 
 function updateProgressBar(percentage) {
   let newPercentage = percentage;
-  if (percentage !== 0) {
+  if (percentage !== 0 && percentage !== 100) {
     const initialEmptyPercentage = initialEmptyPixelRatio * 100;
     const effectiveRange = 100 - initialEmptyPercentage;
     const adjustedPercentage = percentage - initialEmptyPercentage;
