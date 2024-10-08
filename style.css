@@ -31,7 +31,7 @@ main {
 
 @media only screen and (max-width: 600px) {
   .delete-memorial {
-      min-height: 90vh;
+    min-height: 80vh;
   }
 }
 
@@ -168,6 +168,14 @@ p {
   background: #939597;
 }
 
+#press-description {
+  position: absolute;
+  background-color: white;
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-50%);
+}
+
 #end-description {
   position: absolute;
   top: 50%;
@@ -193,3 +201,6 @@ p {
   transition: width 0.2s;
 }
 
+#progress-bar__percentage {
+  color: white;
+}
