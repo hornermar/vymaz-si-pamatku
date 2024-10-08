@@ -15,11 +15,17 @@ const isMobile = window.matchMedia(
   "only screen and (max-width: 760px)"
 ).matches;
 
-let src = memorials[1].src;
+function getRandomIndex(array) {
+  const randomIndex = Math.floor(Math.random() * array.length);
+  return randomIndex;
+}
+
+const randomIndex = getRandomIndex(memorials);
+let src = memorials[randomIndex].src;
 const img = new Image();
 img.src = src;
 
-const endDescriptionEl = document.getElementById("end-descriotion");
+const endDescriptionEl = document.getElementById("end-description");
 
 const changeMemorialButtons = document.querySelectorAll("#change-btn");
 const changeMemorial = (e) => {
@@ -41,7 +47,7 @@ const clearRectSize = isMobile ? 20 : 40;
 
 // calculate the size of the canvas depending of the size of the window
 const windowWidth = window.innerWidth;
-const windowHeight = window.innerHeight;
+const windowHeight = window.innerHeight / 2;
 const calculatedSize = Math.min(windowWidth, windowHeight) * 0.9;
 const size = calculatedSize < 500 ? calculatedSize : 500;
 

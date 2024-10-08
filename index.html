@@ -33,40 +33,44 @@
     <!-- End Google Tag Manager (noscript) -->
     <main>
       <div id="delete-memorial" class="delete-memorial">
-        <div class="delete-memorial__title">
-          <h1>Vymaž si památku!</h1>
-        </div>
-
-        <div class="delete-memorial__container-btn">
-          <button class="btn btn_disabled" disabled>OD Ještěd</button>
-          <button class="btn btn_disabled" disabled>Hotel Praha</button>
-          <button class="btn btn_disabled" disabled>Transgas</button>
-          <button class="btn btn_disabled" disabled>ÚTB</button>
-          <button
-            value="zeleznicniMost"
-            id="change-btn"
-            class="btn btn_clickable"
-          >
-            Železniční most
-          </button>
-          <button value="chemapol" id="change-btn" class="btn btn_clickable">
-            Chemapol
-          </button>
-        </div>
-
         <div>
-          <div class="delete-memorial__field">
-            <p id="end-descriotion">Smazáno. Co dál?</p>
-            <canvas id="canvas"></canvas>
+          <div class="delete-memorial__title">
+            <h1>Vymaž si památku!</h1>
+          </div>
+
+          <div class="delete-memorial__container-btn">
+            <button class="btn btn_disabled" disabled>OD Ještěd</button>
+            <button class="btn btn_disabled" disabled>Hotel Praha</button>
+            <button class="btn btn_disabled" disabled>Transgas</button>
+            <button class="btn btn_disabled" disabled>ÚTB</button>
+            <button
+              value="zeleznicniMost"
+              id="change-btn"
+              class="btn btn_clickable"
+            >
+              Železniční most
+            </button>
+            <button value="chemapol" id="change-btn" class="btn btn_clickable">
+              Chemapol
+            </button>
           </div>
         </div>
-        <p id="press-descriotion">Stiskem v rámečku začni mazat.</p>
+        <div>
+          <div class="delete-memorial__field">
+            <p id="end-description">Smazáno. Co dál?</p>
+            <canvas id="canvas"></canvas>
+          </div>
+          <p id="press-descriotion">Stiskem v rámečku začni mazat.</p>
+        </div>
       </div>
 
+      <!-- Bulldozer -->
       <span id="bulldozer" class="delete-memorial__bulldozer">
         <img src="Bulldozer.svg" alt="bulldozer" />
       </span>
     </main>
+
+    <!-- Include JavaScript modules -->
     <script src="index.js" type="module"></script>
     <script scr="confetti.js" type="module"></script>
 
