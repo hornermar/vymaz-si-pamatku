@@ -81,7 +81,7 @@ function move(mouse) {
 
     if (
       (isIOS && emptyPixelRation >= 0.9923) ||
-      (!isIOS && emptyPixelRation >= 0.996)
+      (!isIOS && emptyPixelRation >= 0.995)
     ) {
       isWon = true;
       isConfetti = true;
