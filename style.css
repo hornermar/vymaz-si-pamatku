@@ -172,8 +172,10 @@ p {
   position: absolute;
   background-color: white;
   left: 50%;
-  bottom: 0;
+  top: 0;
   transform: translateX(-50%);
+  font-size: 1.4rem;
+  padding: 0 0.5rem;
 }
 
 #end-description {

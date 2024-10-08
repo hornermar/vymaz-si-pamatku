@@ -75,7 +75,10 @@ function move(mouse) {
 
     if (isWon) return;
 
-    if (emptyPixelRation >= 0.995) {
+    if (
+      (isIOS && emptyPixelRation >= 0.9929) ||
+      (!isIOS && emptyPixelRation >= 0.996)
+    ) {
       isWon = true;
       isConfetti = true;
       createConfetti();
@@ -127,6 +130,7 @@ const memorials = [
   { src: "chemapol.png", value: "chemapol" },
 ];
 
+const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
 const isMobile = window.matchMedia(
   "only screen and (max-width: 760px)"
 ).matches;
@@ -149,7 +153,7 @@ const ctx = canvas.getContext("2d", { willReadFrequently: true });
 const clearRectSize = isMobile ? 20 : 40;
 const windowWidth = window.innerWidth;
 const windowHeight = isMobile
-  ? (window.innerHeight / 100) * 45
+  ? (window.innerHeight / 100) * 50
   : window.innerHeight;
 const calculatedSize = Math.min(windowWidth, windowHeight) * 0.9;
 const size = calculatedSize < 500 ? calculatedSize : 500;
