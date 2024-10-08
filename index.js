@@ -80,7 +80,7 @@ function move(mouse) {
     if (isWon) return;
 
     if (
-      (isIOS && emptyPixelRation >= 0.9924) ||
+      (isIOS && emptyPixelRation >= 0.9923) ||
       (!isIOS && emptyPixelRation >= 0.997)
     ) {
       isWon = true;
