@@ -76,14 +76,14 @@ function move(mouse) {
     if (isWon) return;
 
     if (
-      (isIOS && emptyPixelRation >= 0.9929) ||
-      (!isIOS && emptyPixelRation >= 0.996)
+      (isIOS && emptyPixelRation >= 0.9924) ||
+      (!isIOS && emptyPixelRation >= 0.997)
     ) {
       isWon = true;
       isConfetti = true;
       createConfetti();
       endDescriptionEl.style.display = "block";
-      // updateProgressBar(100);
+      updateProgressBar(100);
     }
   }
 }
