@@ -184,7 +184,6 @@ p {
   left: 50%;
   transform: translate(-50%, -50%);
   display: none;
-  color: transparent;
 }
 
 /* Progress bar */
@@ -205,5 +204,25 @@ p {
 }
 
 #progress-bar__percentage {
-  color: white;
+  color: transparent;
+}
+
+/* Confetti animation */
+@keyframes confetti-fall {
+  0% {
+    transform: translateY(0) rotate(0deg); /* Start from above the viewport */
+  }
+  100% {
+    transform: translateY(100vh) rotate(360deg); /* Fall to the bottom of the viewport */
+  }
+}
+
+.confetti {
+  position: fixed;
+  top: -10px; /* Start slightly above the top border */
+  width: 10px;
+  height: 10px;
+  z-index: 9999;
+  animation: confetti-fall linear infinite;
+  animation-play-state: paused; /* Start paused */
 }

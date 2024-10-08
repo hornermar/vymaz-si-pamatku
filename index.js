@@ -1,4 +1,8 @@
-import { createConfetti, removeConfetti } from "./confetti.js";
+import {
+  createConfetti,
+  removeConfetti,
+  initializeConfetti,
+} from "./confetti.js";
 
 // State variables
 let isPress = false;
@@ -82,8 +86,8 @@ function move(mouse) {
       isWon = true;
       isConfetti = true;
       createConfetti();
-      endDescriptionEl.style.display = "block";
       updateProgressBar(100);
+      endDescriptionEl.style.display = "block";
     }
   }
 }
@@ -112,6 +116,7 @@ function press() {
     isConfetti = false;
     clearInterval(intervalId);
     removeConfetti();
+    initializeConfetti();
   }
 }
 
@@ -163,6 +168,8 @@ const height = (3 / 4) * size;
 canvas.width = width;
 canvas.height = height;
 const maxPixels = width * height;
+
+initializeConfetti();
 
 img.onload = function () {
   ctx.drawImage(img, 0, 0, width, height);
