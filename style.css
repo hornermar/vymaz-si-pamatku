@@ -216,7 +216,7 @@ p {
 
 .confetti {
   position: fixed;
-  top: -10px; /* Start slightly above the top border */
+  top: -12px; /* Start slightly above the top border */
   width: 10px;
   height: 10px;
   z-index: 999;
