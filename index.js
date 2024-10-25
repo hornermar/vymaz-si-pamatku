@@ -188,14 +188,14 @@ changeMemorialButtons.forEach((btn) => {
 
 canvas.addEventListener("mousedown", pressCanvas);
 canvas.addEventListener("mouseup", releaseCanvas);
-canvas.addEventListener("touchstart", pressCanvas);
+canvas.addEventListener("touchstart", pressCanvas, { passive: true });
 canvas.addEventListener("touchend", releaseCanvas);
 
-window.addEventListener("mousemove", move);
-window.addEventListener("touchmove", move);
+window.addEventListener("mousemove", move, { passive: true });
+window.addEventListener("touchmove", move, { passive: true });
 
 window.addEventListener("mousedown", press);
-window.addEventListener("touchstart", press);
+window.addEventListener("touchstart", press, { passive: true });
 
 pressDescriptionEl.addEventListener("click", handlePressDescriptionClick);
 progressBar.addEventListener("click", pressProgressBar);
