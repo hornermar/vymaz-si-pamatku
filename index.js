@@ -11,6 +11,7 @@ let isConfetti = false;
 let intervalId;
 let wasPressed = false;
 let initialEmptyPixelRatio = 0;
+let memorial = null;
 
 // Utility functions
 function getRandomIndex(array) {
@@ -46,12 +47,24 @@ function updateProgressBar(percentage) {
 
 // Event handlers
 function changeMemorial(e) {
+  // Remove 'selected' class from all buttons
+  changeMemorialButtons.forEach((btn) => {
+    btn.classList.remove("selected");
+  });
+  // Add 'selected' class to the clicked button
+  e.target.classList.add("selected");
+
   endDescriptionEl.style.display = "none";
-  const src = memorials.find((m) => m.value === e.target.value).src;
+  endLinkEl.style.display = "none";
+  memorial = memorials.find((m) => m.value === e.target.value);
+
+  const src = memorial.src;
   img.src = src;
   img.onload();
   isWon = false;
   updateProgressBar(0);
+
+  getEndLink();
 }
 
 function move(mouse) {
@@ -89,6 +102,7 @@ function move(mouse) {
       updateProgressBar(100);
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       endDescriptionEl.style.display = "block";
+      endLinkEl.style.display = memorial.link ? "block" : "none";
     }
   }
 }
@@ -132,21 +146,37 @@ function pressProgressBar() {
 
 // Initialization
 const memorials = [
-  { src: "zeleznicni-most.png", value: "zeleznicniMost" },
+  {
+    src: "zeleznicni-most.png",
+    value: "zeleznicniMost",
+    link: "https://nebourat.cz/",
+  },
   { src: "chemapol.png", value: "chemapol" },
+  {
+    src: "pragerovy-kostky.png",
+    value: "pragerovyKostky",
+    link: "https://www.instagram.com/pragerovy.kostky/p/DDozNzPKbly/?img_index=1",
+  },
 ];
+
+const getEndLink = () => {
+  const link = memorial?.link;
+  endLinkEl.href = link;
+};
 
 const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
 const isMobile = window.matchMedia(
   "only screen and (max-width: 760px)"
 ).matches;
 const randomIndex = getRandomIndex(memorials);
-let src = memorials[randomIndex].src;
+memorial = memorials[randomIndex];
+let src = memorial.src;
 const img = new Image();
 img.src = src;
 
 const pressDescriptionEl = document.getElementById("press-description");
 const endDescriptionEl = document.getElementById("end-description");
+const endLinkEl = document.getElementById("end-link");
 const changeMemorialButtons = document.querySelectorAll("#change-btn");
 const progressBar = document.getElementById("progress-bar");
 const progressBarPercentage = document.getElementById(
@@ -171,6 +201,7 @@ canvas.height = height;
 const maxPixels = width * height;
 
 initializeConfetti();
+getEndLink(randomIndex);
 
 img.onload = function () {
   ctx.drawImage(img, 0, 0, width, height);
@@ -180,6 +211,13 @@ img.onload = function () {
   bulldozer.style = `--top: ${canvasY}px; --left: ${canvasX}px;`;
   initialEmptyPixelRatio = getEmptyPixelsRatio();
 };
+
+const selectedButton = Array.from(changeMemorialButtons).find(
+  (btn) => btn.value === memorial.value
+);
+if (selectedButton) {
+  selectedButton.classList.add("selected");
+}
 
 // Event listeners
 changeMemorialButtons.forEach((btn) => {
