@@ -157,7 +157,7 @@ const memorials = [
   {
     src: "pragerovy-kostky.png",
     value: "pragerovyKostky",
-    link: "https://www.instagram.com/pragerovy.kostky/p/DDozNzPKbly/?img_index=1",
+    link: "https://www.petice.com/opravte_pragerovy_kostky_petice_za_zachovani_a_rekonstrukci_budovy_kostek_u_emauz#a?fbclid=PAZXh0bgNhZW0CMTEAAaYV-suLU8RZjQ5mLdq6JA9-HyplNdvJS13xfpj-6_ErgtxF3j3Oal6yAxE_aem_cCXDvLHHBWg_dSk__4Gi_A",
   },
 ];
 
