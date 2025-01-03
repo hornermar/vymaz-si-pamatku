@@ -15,7 +15,9 @@ let memorial = null;
 
 // Utility functions
 function getRandomIndex(array) {
-  return Math.floor(Math.random() * array.length);
+  // Pragerovy kostky temporarily default
+  return 2;
+  // return Math.floor(Math.random() * array.length);
 }
 
 function getEmptyPixelsRatio() {
