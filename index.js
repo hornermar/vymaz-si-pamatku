@@ -149,13 +149,13 @@ function pressProgressBar() {
 // Initialization
 const memorials = [
   {
-    src: "zeleznicni-most.png",
+    src: "zeleznicni-most.webp",
     value: "zeleznicniMost",
     link: "https://nebourat.cz/",
   },
-  { src: "chemapol.png", value: "chemapol" },
+  { src: "chemapol.webp", value: "chemapol" },
   {
-    src: "pragerovy-kostky.png",
+    src: "pragerovy-kostky.webp",
     value: "pragerovyKostky",
     link: "https://www.petice.com/opravte_pragerovy_kostky_petice_za_zachovani_a_rekonstrukci_budovy_kostek_u_emauz#a?fbclid=PAZXh0bgNhZW0CMTEAAaYV-suLU8RZjQ5mLdq6JA9-HyplNdvJS13xfpj-6_ErgtxF3j3Oal6yAxE_aem_cCXDvLHHBWg_dSk__4Gi_A",
   },
