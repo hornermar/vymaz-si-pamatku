@@ -15,9 +15,7 @@ let memorial = null;
 
 // Utility functions
 function getRandomIndex(array) {
-  // Pragerovy kostky temporarily default
-  return 2;
-  // return Math.floor(Math.random() * array.length);
+  return Math.floor(Math.random() * array.length);
 }
 
 function getEmptyPixelsRatio() {
@@ -95,7 +93,7 @@ function move(mouse) {
     updateProgressBar(emptyPixelRation * 100);
 
     if (
-      (isIOS && emptyPixelRation >= 0.9923) ||
+      (isIOS && emptyPixelRation >= 0.992) ||
       (!isIOS && emptyPixelRation >= 0.995)
     ) {
       isWon = true;
