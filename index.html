@@ -90,21 +90,21 @@
 
     <!-- Include JavaScript modules -->
     <script src="index.js" type="module"></script>
-    <script scr="confetti.js" type="module"></script>
+    <script src="confetti.js" type="module"></script>
 
-    <!-- Google tag (gtag.js) -->
-    <script
-      async
-      src="https://www.googletagmanager.com/gtag/js?id=G-J5LM9ZLJJ8"
-    ></script>
+    <!-- Plausible Analytics -->
     <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag() {
-        dataLayer.push(arguments);
-      }
-      gtag("js", new Date());
-
-      gtag("config", "G-J5LM9ZLJJ8");
+      (window.plausible =
+        window.plausible ||
+        function () {
+          (plausible.q = plausible.q || []).push(arguments);
+        }),
+        (plausible.init =
+          plausible.init ||
+          function (i) {
+            plausible.o = i || {};
+          });
+      plausible.init();
     </script>
   </body>
 </html>
